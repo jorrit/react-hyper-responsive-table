@@ -34,6 +34,8 @@ const keyGetter = row => row.name;
 />
 ```
 
+[See online](https://jorrit.github.io/react-hyper-responsive-table/)
+
 ## Properties
 
 Some properties have multiple types.
