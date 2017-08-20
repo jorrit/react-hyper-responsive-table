@@ -21,6 +21,11 @@ const rows = [
     role: <a href="https://en.wikipedia.org/wiki/Vito_Corleone">Vito Corleone</a>,
     image: <img src="https://upload.wikimedia.org/wikipedia/en/2/21/Godfather15_flip.jpg" alt="Vito Corleone" />
   },
+  {
+    image: <img src="https://upload.wikimedia.org/wikipedia/en/d/df/Michaelcoreleone.jpg" alt="Al Pacino" />,
+    name: 'Al Pacino',
+    role: <a href="https://en.wikipedia.org/wiki/Michael_Corleone">Michael Corleone</a>,
+  },
 ];
 
 const keyGetter = row => row.name;
@@ -32,6 +37,69 @@ const keyGetter = row => row.name;
   breakpoint={578}
   tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
 />
+```
+
+Output in wide mode:
+
+```html
+<table class="widetable">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://upload.wikimedia.org/wikipedia/en/2/21/Godfather15_flip.jpg" alt="Vito Corleone"></td>
+      <td>Marlon Brando</td>
+      <td><a href="https://en.wikipedia.org/wiki/Vito_Corleone">Vito Corleone</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://upload.wikimedia.org/wikipedia/en/d/df/Michaelcoreleone.jpg" alt="Al Pacino"></td>
+      <td>Al Pacino</td>
+      <td><a href="https://en.wikipedia.org/wiki/Michael_Corleone">Michael Corleone</a></td>
+    </tr>
+  </tbody>
+</table>
+```
+
+Output in narrow mode:
+
+Note that each data row is now a `<tbody>` with multiple rows.
+
+```html
+<table class="narrowtable">
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td><img src="https://upload.wikimedia.org/wikipedia/en/2/21/Godfather15_flip.jpg" alt="Vito Corleone"></td>
+    </tr>
+    <tr>
+      <th scope="row">Name</th>
+      <td>Marlon Brando</td>
+    </tr>
+    <tr>
+      <th scope="row">Role</th>
+      <td><a href="https://en.wikipedia.org/wiki/Vito_Corleone">Vito Corleone</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td><img src="https://upload.wikimedia.org/wikipedia/en/d/df/Michaelcoreleone.jpg" alt="Al Pacino"></td>
+    </tr>
+    <tr>
+      <th scope="row">Name</th>
+      <td>Al Pacino</td>
+    </tr>
+    <tr>
+      <th scope="row">Role</th>
+      <td><a href="https://en.wikipedia.org/wiki/Michael_Corleone">Michael Corleone</a></td>
+    </tr>
+  </tbody>
+</table>
 ```
 
 [See online](https://jorrit.github.io/react-hyper-responsive-table/)
