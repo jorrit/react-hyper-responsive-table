@@ -1,6 +1,6 @@
 ## Prerequisites
 
-[Node.js](http://nodejs.org/) >= v4 must be installed.
+[Node.js](https://nodejs.org/) >= v4 must be installed.
 
 ## Installation
 
