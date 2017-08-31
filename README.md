@@ -1,3 +1,9 @@
+[![react-hyper-responsive-table on npm](https://img.shields.io/npm/v/react-hyper-responsive-table.svg?style=flat)](https://www.npmjs.com/package/react-hyper-responsive-table)
+[![Dependency Status](https://david-dm.org/jorrit/react-hyper-responsive-table/status.svg)](https://david-dm.org/jorrit/react-hyper-responsive-table)
+[![Development Dependency Status](https://david-dm.org/jorrit/react-hyper-responsive-table/dev-status.svg)](https://david-dm.org/jorrit/react-hyper-responsive-table?type=dev)
+[![Build Status](https://travis-ci.org/jorrit/react-hyper-responsive-table.svg?branch=master)](https://travis-ci.org/jorrit/react-hyper-responsive-table)
+[![Coverage](https://coveralls.io/repos/github/jorrit/react-hyper-responsive-table/badge.svg)](https://coveralls.io/github/jorrit/react-hyper-responsive-table)
+
 # react-hyper-responsive-table
 
 A responsive container for displaying tables traditionally on wide screens and with headers prepended to each data cell on narrow screens.

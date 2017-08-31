@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+/* globals document */
+import React from 'react';
 import { render } from 'react-dom';
 
 import './demo.css';
@@ -43,20 +44,18 @@ const rows = [
 ];
 const keyGetter = row => row.name;
 
-class Demo extends Component {
-  render() {
-    return (<div>
-      <h1>react-hyper-responsive-table demo</h1>
-      <p>The breakpoint of this demo is set to 578 pixels.</p>
-      <ReactHyperResponsiveTable
-        headers={headers}
-        rows={rows}
-        keyGetter={keyGetter}
-        breakpoint={578}
-        tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
-      />
-    </div>);
-  }
-}
+const Demo = () =>
+  (<div>
+    <h1>react-hyper-responsive-table demo</h1>
+    <p>The breakpoint of this demo is set to 578 pixels.</p>
+    <ReactHyperResponsiveTable
+      headers={headers}
+      rows={rows}
+      keyGetter={keyGetter}
+      breakpoint={578}
+      tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
+    />
+  </div>);
+
 
 render(<Demo />, document.querySelector('#demo'));
