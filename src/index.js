@@ -27,8 +27,7 @@ const getClassNameOrStyleProps = (classNameOrStyle, componentState) => {
 };
 
 const inBrowser = typeof window !== 'undefined';
-// eslint-disable-next-line no-undef
-const matchMedia = inBrowser ? window.matchMedia : null;
+const matchMedia = inBrowser && window.matchMedia !== null;
 
 class HyperResponsiveTable extends Component {
   static propTypes = {
@@ -70,17 +69,10 @@ class HyperResponsiveTable extends Component {
   }
 
   componentWillUnmount() {
-    const self = this;
-    this.setState((state) => {
-      if (state.mql) {
-        state.mql.removeListener(self.handleMatch);
-        return {
-          ...state,
-          mql: null,
-        };
-      }
-      return state;
-    });
+    const { mql } = this.state;
+    if (mql) {
+      mql.removeListener(this.handleMatch);
+    }
   }
 
   updateQuery = (props) => {
@@ -89,7 +81,7 @@ class HyperResponsiveTable extends Component {
     let narrow = false;
     const { breakpoint } = props;
     if (matchMedia) {
-      mql = matchMedia(typeof breakpoint === 'string' ? breakpoint : `screen and (min-width: ${breakpoint}px)`);
+      mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `screen and (min-width: ${breakpoint}px)`);
       mql.addListener(this.handleMatch);
       narrow = !mql.matches;
     }
