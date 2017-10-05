@@ -101,7 +101,7 @@ describe('Component', () => {
     });
   });
 
-  it('wide to narrow change should trigger tableStyling function call', () => {
+  it('wide to narrow change should trigger tableStyling function call', (done) => {
     const breakpoint = 1000;
     const tableStyling = opts => (opts.narrow ? 'narrow' : 'wide');
     const props = { headers, rows, keyGetter, breakpoint, tableStyling };
@@ -111,7 +111,12 @@ describe('Component', () => {
       expect(table.getAttribute('class')).toEqual('wide');
 
       matchMedia.setConfig({ type: 'screen', width: 900 });
-      expect(table.getAttribute('class')).toEqual('narrow');
+
+      // Wait a bit before React notices the screen size update.
+      setTimeout(() => {
+        expect(table.getAttribute('class')).toEqual('narrow');
+        done();
+      }, 50);
     });
   });
 
