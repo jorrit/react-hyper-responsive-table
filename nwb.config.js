@@ -5,8 +5,9 @@ module.exports = {
     umd: {
       global: 'ReactHyperResponsiveTable',
       externals: {
-        react: 'React'
-      }
-    }
-  }
-}
+        react: 'React',
+        'prop-types': 'PropTypes',
+      },
+    },
+  },
+};
