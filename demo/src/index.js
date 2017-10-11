@@ -14,7 +14,7 @@ const rows = [
   {
     name: 'Marlon Brando',
     role: <a href="https://en.wikipedia.org/wiki/Vito_Corleone">Vito Corleone</a>,
-    image: <img src="https://upload.wikimedia.org/wikipedia/en/2/21/Godfather15_flip.jpg" alt="Vito Corleone" />
+    image: <img src="https://upload.wikimedia.org/wikipedia/en/2/21/Godfather15_flip.jpg" alt="Vito Corleone" />,
   },
   {
     image: <img src="https://upload.wikimedia.org/wikipedia/en/d/df/Michaelcoreleone.jpg" alt="Al Pacino" />,
@@ -44,8 +44,8 @@ const rows = [
 ];
 const keyGetter = row => row.name;
 
-const Demo = () =>
-  (<div>
+const Demo = () => (
+  <div>
     <h1>react-hyper-responsive-table demo</h1>
     <p>The breakpoint of this demo is set to 578 pixels.</p>
     <ReactHyperResponsiveTable

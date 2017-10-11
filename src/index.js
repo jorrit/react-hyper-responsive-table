@@ -108,34 +108,41 @@ class HyperResponsiveTable extends Component {
   };
 
   render() {
-    const { tableStyling, headers, rows, keyGetter } = this.props;
+    const {
+      tableStyling,
+      headers,
+      rows,
+      keyGetter,
+    } = this.props;
     const { narrow } = this.state;
 
     const dataKeys = Object.keys(headers);
 
     if (narrow) {
-      return (<table {...getClassNameOrStyleProps(tableStyling, this.state)}>
-        {rows.map(row =>
-          (<tbody key={keyGetter(row)}>
-            {dataKeys.map(key => <tr key={key}><th scope="row">{headers[key]}</th><td>{row[key]}</td></tr>)}
-          </tbody>))
-        }
-      </table>);
+      return (
+        <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
+          {rows.map(row => (
+            <tbody key={keyGetter(row)}>
+              {dataKeys.map(key => <tr key={key}><th scope="row">{headers[key]}</th><td>{row[key]}</td></tr>)}
+            </tbody>))
+          }
+        </table>);
     }
 
-    return (<table {...getClassNameOrStyleProps(tableStyling, this.state)}>
-      <thead>
-        <tr>
-          { dataKeys.map(key => <th key={key} scope="col">{headers[key]}</th>) }
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map(row =>
-          (<tr key={keyGetter(row)}>
-            {dataKeys.map(key => <td key={key}>{row[key]}</td>)}
-          </tr>))}
-      </tbody>
-    </table>);
+    return (
+      <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
+        <thead>
+          <tr>
+            { dataKeys.map(key => <th key={key} scope="col">{headers[key]}</th>) }
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr key={keyGetter(row)}>
+              {dataKeys.map(key => <td key={key}>{row[key]}</td>)}
+            </tr>))}
+        </tbody>
+      </table>);
   }
 }
 

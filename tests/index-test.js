@@ -38,7 +38,12 @@ describe('Component', () => {
 
   it('low integer breakpoint should give wide styled table', () => {
     const breakpoint = 300;
-    const props = { headers, rows, keyGetter, breakpoint };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+    };
 
     render(<Component {...props} />, node, () => {
       expect(node.querySelectorAll('table').length).toEqual(1);
@@ -50,7 +55,12 @@ describe('Component', () => {
 
   it('high integer breakpoint should give narrow styled table', () => {
     const breakpoint = 3000;
-    const props = { headers, rows, keyGetter, breakpoint };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+    };
 
     render(<Component {...props} />, node, () => {
       expect(node.querySelectorAll('table').length).toEqual(1);
@@ -62,7 +72,12 @@ describe('Component', () => {
 
   it('low media query breakpoint should give wide styled table', () => {
     const breakpoint = 'screen and (min-width: 1000px)';
-    const props = { headers, rows, keyGetter, breakpoint };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+    };
 
     render(<Component {...props} />, node, () => {
       expect(node.querySelectorAll('table').length).toEqual(1);
@@ -74,7 +89,12 @@ describe('Component', () => {
 
   it('tableStyling function value should give dynamic class when string is returned', () => {
     const tableStyling = opts => (opts.narrow ? 'narrow' : 'wide');
-    const props = { headers, rows, keyGetter, tableStyling };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      tableStyling,
+    };
 
     render(<Component {...props} breakpoint={3000} />, node, () => {
       expect(node.querySelectorAll('table.narrow').length).toEqual(1);
@@ -92,7 +112,13 @@ describe('Component', () => {
   it('tableStyling object value should give style attribute', () => {
     const breakpoint = 3000;
     const tableStyling = { color: 'red' };
-    const props = { headers, rows, keyGetter, breakpoint, tableStyling };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+    };
 
     render(<Component {...props} />, node, () => {
       const table = node.querySelector('table');
@@ -104,7 +130,13 @@ describe('Component', () => {
   it('wide to narrow change should trigger tableStyling function call', (done) => {
     const breakpoint = 1000;
     const tableStyling = opts => (opts.narrow ? 'narrow' : 'wide');
-    const props = { headers, rows, keyGetter, breakpoint, tableStyling };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+    };
 
     render(<Component {...props} />, node, () => {
       const table = node.querySelector('table');
@@ -123,7 +155,13 @@ describe('Component', () => {
   it('invalid tableStyling should give no class or style attribute', () => {
     const breakpoint = 1000;
     const tableStyling = 1234;
-    const props = { headers, rows, keyGetter, breakpoint, tableStyling };
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+    };
 
     render(<Component {...props} />, node, () => {
       const table = node.querySelector('table');
