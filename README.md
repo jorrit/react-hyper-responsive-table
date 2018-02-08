@@ -6,6 +6,8 @@
 
 # react-hyper-responsive-table
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jorrit/react-hyper-responsive-table.svg)](https://greenkeeper.io/)
+
 A responsive container for displaying tables traditionally on wide screens and with headers prepended to each data cell on narrow screens.
 
 ## Installation
