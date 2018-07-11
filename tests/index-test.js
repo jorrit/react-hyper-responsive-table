@@ -44,7 +44,7 @@ describe('Component', () => {
       headers,
       rows,
       keyGetter,
-      breakpoint
+      breakpoint,
     };
 
     render(<Component {...props} />, node, () => {
@@ -181,7 +181,7 @@ describe('Component', () => {
       keyGetter,
       breakpoint,
       tableStyling,
-      withClasses
+      withClasses,
     };
 
     render(<Component {...props} />, node, () => {

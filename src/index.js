@@ -28,11 +28,11 @@ const getClassNameOrStyleProps = (classNameOrStyle, componentState) => {
 
 function headerClass(withClasses, key) {
   return withClasses ? { className: `th-${key}` } : {};
-}
+};
 
 function rowClass(withClasses, key) {
   return withClasses ? { className: `tr-${key}` } : {};
-}
+};
 
 const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
@@ -52,7 +52,7 @@ class HyperResponsiveTable extends Component {
       PropTypes.func,
     ]),
     initialNarrow: PropTypes.bool,
-    withClasses: PropTypes.bool
+    withClasses: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -123,7 +123,7 @@ class HyperResponsiveTable extends Component {
       headers,
       rows,
       keyGetter,
-      withClasses
+      withClasses,
     } = this.props;
     const { narrow } = this.state;
 
@@ -149,7 +149,7 @@ class HyperResponsiveTable extends Component {
         </thead>
         <tbody>
           {rows.map(row => (
-            <tr key={keyGetter(row)}  {...rowClass(withClasses, keyGetter(row))}>
+            <tr key={keyGetter(row)} {...rowClass(withClasses, keyGetter(row))}>
               {dataKeys.map(key => <td key={key}>{row[key]}</td>)}
             </tr>))}
         </tbody>
