@@ -24,6 +24,8 @@ const rows = [
 ];
 const keyGetter = r => r.a;
 
+const withClasses = true;
+
 describe('Component', () => {
   let node;
 
@@ -42,7 +44,7 @@ describe('Component', () => {
       headers,
       rows,
       keyGetter,
-      breakpoint,
+      breakpoint
     };
 
     render(<Component {...props} />, node, () => {
@@ -167,6 +169,28 @@ describe('Component', () => {
       const table = node.querySelector('table');
       expect(table.getAttribute('class')).toEqual(null);
       expect(table.getAttribute('style')).toEqual(null);
+    });
+  });
+
+  it('add classes to headers and rows if pass the property `withClasses`', () => {
+    const breakpoint = 0;
+    const tableStyling = 1234;
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+      withClasses
+    };
+
+    render(<Component {...props} />, node, () => {
+      const th = node.querySelectorAll('th');
+      const tbody = node.querySelectorAll('tbody');
+      const tr = tbody[0].querySelectorAll('tr');
+
+      expect(th[0].getAttribute('class')).toEqual('th-a');
+      expect(tr[0].getAttribute('class')).toEqual('tr-A 1');
     });
   });
 });
