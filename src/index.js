@@ -26,6 +26,14 @@ const getClassNameOrStyleProps = (classNameOrStyle, componentState) => {
   return {};
 };
 
+function headerClass(withClasses, key) {
+  return withClasses ? { className: `th-${key}` } : {};
+}
+
+function rowClass(withClasses, key) {
+  return withClasses ? { className: `tr-${key}` } : {};
+}
+
 const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
 
@@ -44,10 +52,12 @@ class HyperResponsiveTable extends Component {
       PropTypes.func,
     ]),
     initialNarrow: PropTypes.bool,
+    withClasses: PropTypes.bool
   };
 
   static defaultProps = {
     initialNarrow: false,
+    withClasses: false,
     tableStyling: null,
   };
 
@@ -113,6 +123,7 @@ class HyperResponsiveTable extends Component {
       headers,
       rows,
       keyGetter,
+      withClasses
     } = this.props;
     const { narrow } = this.state;
 
@@ -123,7 +134,7 @@ class HyperResponsiveTable extends Component {
         <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
           {rows.map(row => (
             <tbody key={keyGetter(row)}>
-              {dataKeys.map(key => <tr key={key}><th scope="row">{headers[key]}</th><td>{row[key]}</td></tr>)}
+              {dataKeys.map(key => <tr key={key} {...rowClass(withClasses, keyGetter(row))}><th {...headerClass(withClasses, key)} scope="row">{headers[key]}</th><td>{row[key]}</td></tr>)}
             </tbody>))
           }
         </table>);
@@ -133,12 +144,12 @@ class HyperResponsiveTable extends Component {
       <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
         <thead>
           <tr>
-            { dataKeys.map(key => <th key={key} scope="col">{headers[key]}</th>) }
+            {dataKeys.map(key => <th key={key} {...headerClass(withClasses, key)} scope="col">{headers[key]}</th>)}
           </tr>
         </thead>
         <tbody>
           {rows.map(row => (
-            <tr key={keyGetter(row)}>
+            <tr key={keyGetter(row)}  {...rowClass(withClasses, keyGetter(row))}>
               {dataKeys.map(key => <td key={key}>{row[key]}</td>)}
             </tr>))}
         </tbody>
