@@ -28,11 +28,11 @@ const getClassNameOrStyleProps = (classNameOrStyle, componentState) => {
 
 function headerClass(withClasses, key) {
   return withClasses ? { className: `th-${key}` } : {};
-};
+}
 
 function rowClass(withClasses, key) {
   return withClasses ? { className: `tr-${key}` } : {};
-};
+}
 
 const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
