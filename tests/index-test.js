@@ -24,8 +24,6 @@ const rows = [
 ];
 const keyGetter = r => r.a;
 
-const withClasses = true;
-
 describe('Component', () => {
   let node;
 
@@ -175,6 +173,8 @@ describe('Component', () => {
   it('add classes to headers and rows if pass the property `withClasses`', () => {
     const breakpoint = 0;
     const tableStyling = 1234;
+    const withClasses = true;
+
     const props = {
       headers,
       rows,

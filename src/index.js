@@ -27,11 +27,11 @@ const getClassNameOrStyleProps = (classNameOrStyle, componentState) => {
 };
 
 function headerClass(withClasses, key) {
-  return withClasses ? { className: `th-${key}` } : {};
+  return withClasses ? { className: `header-${key}` } : {};
 }
 
 function rowClass(withClasses, key) {
-  return withClasses ? { className: `tr-${key}` } : {};
+  return withClasses ? { className: `row-${key}` } : {};
 }
 
 const inBrowser = typeof window !== 'undefined';
