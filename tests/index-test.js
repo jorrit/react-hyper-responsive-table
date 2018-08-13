@@ -189,8 +189,8 @@ describe('Component', () => {
       const tbody = node.querySelectorAll('tbody');
       const tr = tbody[0].querySelectorAll('tr');
 
-      expect(th[0].getAttribute('class')).toEqual('th-a');
-      expect(tr[0].getAttribute('class')).toEqual('tr-A 1');
+      expect(th[0].getAttribute('class')).toEqual('header-a');
+      expect(tr[0].getAttribute('class')).toEqual('row-A 1');
     });
   });
 });
