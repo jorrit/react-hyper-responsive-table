@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^9.0.0",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
