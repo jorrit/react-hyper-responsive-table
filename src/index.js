@@ -134,7 +134,11 @@ class HyperResponsiveTable extends Component {
         <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
           {rows.map(row => (
             <tbody key={keyGetter(row)}>
-              {dataKeys.map(key => <tr key={key} {...rowClass(withClasses, keyGetter(row))}><th {...headerClass(withClasses, key)} scope="row">{headers[key]}</th><td>{row[key]}</td></tr>)}
+              {dataKeys.map(key => (
+                <tr key={key} {...rowClass(withClasses, keyGetter(row))}>
+                  <th {...headerClass(withClasses, key)} scope="row">{headers[key]}</th>
+                  <td>{row[key]}</td>
+                </tr>))}
             </tbody>))
           }
         </table>);
