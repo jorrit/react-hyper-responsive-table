@@ -169,4 +169,28 @@ describe('Component', () => {
       expect(table.getAttribute('style')).toEqual(null);
     });
   });
+
+  it('add classes to headers and rows if pass the property `withClasses`', () => {
+    const breakpoint = 0;
+    const tableStyling = 1234;
+    const withClasses = true;
+
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+      withClasses,
+    };
+
+    render(<Component {...props} />, node, () => {
+      const th = node.querySelectorAll('th');
+      const tbody = node.querySelectorAll('tbody');
+      const tr = tbody[0].querySelectorAll('tr');
+
+      expect(th[0].getAttribute('class')).toEqual('header-a');
+      expect(tr[0].getAttribute('class')).toEqual('row-A 1');
+    });
+  });
 });

@@ -53,6 +53,7 @@ const Demo = () => (
       rows={rows}
       keyGetter={keyGetter}
       breakpoint={578}
+      withClasses
       tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
     />
   </div>);

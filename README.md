@@ -126,6 +126,7 @@ Properties marked with an asterisk (`*`) are required.
 | | `object` | CSS styles to apply to the parent table tag. |
 | | `function` | Function returning one of the above. The function receives a state object with boolean property narrow indicating if the current presentation is narrow or wide. |
 | `initialNarrow` | `bool` | Initially render the table in narrow mode when rendering serverside. Set to true when you expect the browser to be narrow to prevent rerendering client side. |
+| `withClasses` | `bool` | Add unique class names to each row and header cell, respectively row-KEY and header-KEY |
 
 
 ## name
