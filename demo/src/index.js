@@ -1,4 +1,3 @@
-/* globals document */
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -60,7 +59,7 @@ const rows = [
       </a>),
   },
 ];
-const keyGetter = row => row.name;
+const keyGetter = (row) => row.name;
 
 const Demo = () => (
   <div>
@@ -78,7 +77,7 @@ const Demo = () => (
       withClasses
       tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
     />
-  </div>);
-
+  </div>
+);
 
 render(<Demo />, document.querySelector('#demo'));
