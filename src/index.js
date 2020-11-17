@@ -38,29 +38,6 @@ const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
 
 class HyperResponsiveTable extends Component {
-  static propTypes = {
-    headers: objectOfStringOrElement.isRequired,
-    rows: PropTypes.arrayOf(objectOfStringOrElement).isRequired,
-    breakpoint: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    keyGetter: PropTypes.func.isRequired,
-    tableStyling: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.func,
-    ]),
-    initialNarrow: PropTypes.bool,
-    withClasses: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    initialNarrow: false,
-    withClasses: false,
-    tableStyling: null,
-  };
-
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -68,13 +45,15 @@ class HyperResponsiveTable extends Component {
     };
   }
 
-  componentWillMount() {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount() {
     if (inBrowser) {
       this.updateQuery(this.props);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.updateQuery(nextProps);
   }
 
@@ -92,7 +71,7 @@ class HyperResponsiveTable extends Component {
     const { breakpoint } = props;
     if (matchMedia) {
       mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `screen and (min-width: ${breakpoint}px)`);
-      mql.addListener(this.handleMatch);
+      mql.addEventListener('change', this.handleMatch);
       narrow = !mql.matches;
     }
 
@@ -132,33 +111,60 @@ class HyperResponsiveTable extends Component {
     if (narrow) {
       return (
         <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
-          {rows.map(row => (
+          {rows.map((row) => (
             <tbody key={keyGetter(row)}>
-              {dataKeys.map(key => (
+              {dataKeys.map((key) => (
                 <tr key={key} {...rowClass(withClasses, keyGetter(row))}>
                   <th {...headerClass(withClasses, key)} scope="row">{headers[key]}</th>
                   <td>{row[key]}</td>
-                </tr>))}
-            </tbody>))
-          }
-        </table>);
+                </tr>
+              ))}
+            </tbody>
+          ))}
+        </table>
+      );
     }
 
     return (
       <table {...getClassNameOrStyleProps(tableStyling, this.state)}>
         <thead>
           <tr>
-            {dataKeys.map(key => <th key={key} {...headerClass(withClasses, key)} scope="col">{headers[key]}</th>)}
+            {dataKeys.map((key) => <th key={key} {...headerClass(withClasses, key)} scope="col">{headers[key]}</th>)}
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => (
+          {rows.map((row) => (
             <tr key={keyGetter(row)} {...rowClass(withClasses, keyGetter(row))}>
-              {dataKeys.map(key => <td key={key}>{row[key]}</td>)}
-            </tr>))}
+              {dataKeys.map((key) => <td key={key}>{row[key]}</td>)}
+            </tr>
+          ))}
         </tbody>
-      </table>);
+      </table>
+    );
   }
 }
+
+HyperResponsiveTable.propTypes = {
+  headers: objectOfStringOrElement.isRequired,
+  rows: PropTypes.arrayOf(objectOfStringOrElement).isRequired,
+  breakpoint: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  keyGetter: PropTypes.func.isRequired,
+  tableStyling: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  initialNarrow: PropTypes.bool,
+  withClasses: PropTypes.bool,
+};
+
+HyperResponsiveTable.defaultProps = {
+  initialNarrow: false,
+  withClasses: false,
+  tableStyling: null,
+};
 
 export default HyperResponsiveTable;

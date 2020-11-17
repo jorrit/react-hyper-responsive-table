@@ -22,7 +22,7 @@ const rows = [
     b: 'B 2',
   },
 ];
-const keyGetter = r => r.a;
+const keyGetter = (r) => r.a;
 
 describe('Component', () => {
   let node;
@@ -88,7 +88,7 @@ describe('Component', () => {
   });
 
   it('tableStyling function value should give dynamic class when string is returned', () => {
-    const tableStyling = opts => (opts.narrow ? 'narrow' : 'wide');
+    const tableStyling = (opts) => (opts.narrow ? 'narrow' : 'wide');
     const props = {
       headers,
       rows,
@@ -129,7 +129,7 @@ describe('Component', () => {
 
   it('wide to narrow change should trigger tableStyling function call', (done) => {
     const breakpoint = 1000;
-    const tableStyling = opts => (opts.narrow ? 'narrow' : 'wide');
+    const tableStyling = (opts) => (opts.narrow ? 'narrow' : 'wide');
     const props = {
       headers,
       rows,
