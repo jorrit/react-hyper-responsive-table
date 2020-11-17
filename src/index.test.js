@@ -1,9 +1,11 @@
+/* eslint-env browser, mocha */
+
 import expect from 'expect';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import matchMediaMock from 'match-media-mock';
 
-import Component from '../src';
+import Component from './index';
 
 const matchMedia = matchMediaMock.create();
 window.matchMedia = matchMedia;

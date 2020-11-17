@@ -71,7 +71,7 @@ class HyperResponsiveTable extends Component {
     const { breakpoint } = props;
     if (matchMedia) {
       mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `screen and (min-width: ${breakpoint}px)`);
-      mql.addEventListener('change', this.handleMatch);
+      mql.addListener(this.handleMatch);
       narrow = !mql.matches;
     }
 
