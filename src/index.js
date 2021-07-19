@@ -70,7 +70,7 @@ class HyperResponsiveTable extends Component {
     let narrow = false;
     const { breakpoint } = props;
     if (matchMedia) {
-      mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `screen and (min-width: ${breakpoint}px)`);
+      mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `(min-width: ${breakpoint}px)`);
       mql.addListener(this.handleMatch);
       narrow = !mql.matches;
     }

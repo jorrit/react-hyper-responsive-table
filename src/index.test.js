@@ -195,4 +195,54 @@ describe('Component', () => {
       expect(tr[0].getAttribute('class')).toEqual('row-A 1');
     });
   });
+
+  it('print wide', (done) => {
+    const breakpoint = 1000;
+    const tableStyling = (opts) => (opts.narrow ? 'narrow' : 'wide');
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+    };
+
+    render(<Component {...props} />, node, () => {
+      const table = node.querySelector('table');
+      expect(table.getAttribute('class')).toEqual('wide');
+
+      matchMedia.setConfig({ type: 'print', width: 1001 });
+
+      // Wait a bit before React notices the screen size update.
+      setTimeout(() => {
+        expect(table.getAttribute('class')).toEqual('wide');
+        done();
+      }, 50);
+    });
+  });
+
+  it('print narrow', (done) => {
+    const breakpoint = 1000;
+    const tableStyling = (opts) => (opts.narrow ? 'narrow' : 'wide');
+    const props = {
+      headers,
+      rows,
+      keyGetter,
+      breakpoint,
+      tableStyling,
+    };
+
+    render(<Component {...props} />, node, () => {
+      const table = node.querySelector('table');
+      expect(table.getAttribute('class')).toEqual('wide');
+
+      matchMedia.setConfig({ type: 'print', width: 900 });
+
+      // Wait a bit before React notices the screen size update.
+      setTimeout(() => {
+        expect(table.getAttribute('class')).toEqual('narrow');
+        done();
+      }, 50);
+    });
+  });
 });
