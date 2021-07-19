@@ -7,6 +7,9 @@ jobs:
 
         runs-on: ubuntu-latest
 
+        env:
+            CI: true
+
         strategy:
             matrix:
                 node-version: [14.x, 16.x, 18.x]
@@ -17,9 +20,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
+            - run: npm install -g npm@latest # to support newer lock file
             - run: npm ci
             - run: npm run lint
-            - run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
-              if: ${{ matrix.node-version == '18.x' }}
-            - run: npm run test:coverage
-            - run: echo "NODE_OPTIONS=" >> $GITHUB_ENV
+            - run: npm run test
