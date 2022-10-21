@@ -14,14 +14,13 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
             - run: npm run lint
-            - run: npm run test:coverage
-              if: ${{ matrix.node-version != '18.x' }}
-            - run: npm run test:coverage
+            - run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
               if: ${{ matrix.node-version == '18.x' }}
-              env:
-                  NODE_OPTIONS: --openssl-legacy-provider
+            - run: npm run test:coverage
+            - run: echo "NODE_OPTIONS=" >> $GITHUB_ENV
+
