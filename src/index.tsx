@@ -1,18 +1,11 @@
-import {
-  CSSProperties,
-  FunctionComponent,
-  ReactNode,
-  TableHTMLAttributes,
-  useState,
-  useSyncExternalStore,
-} from 'react';
+import { CSSProperties, ReactNode, TableHTMLAttributes, useState, useSyncExternalStore } from 'react';
 import * as PropTypes from 'prop-types';
 
 const stringOrElement = PropTypes.oneOfType([PropTypes.string, PropTypes.element]);
 const objectOfStringOrElement = PropTypes.objectOf(stringOrElement);
 
-const getClassNameOrStyleProps = (
-  classNameOrStyle: undefined | TableStylingValue,
+const getClassNameOrStyleProps = <TRecord,>(
+  classNameOrStyle: undefined | TableStylingValue<TRecord>,
   narrow: boolean
 ): TableHTMLAttributes<HTMLTableElement> => {
   if (!classNameOrStyle) {
@@ -44,21 +37,19 @@ function rowClass(withClasses, key) {
 const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
 
-type TableRecordType = Record<string, ReactNode>;
+type TableStylingValue<TRecord> = string | CSSProperties | ((row: TRecord) => string);
 
-type TableStylingValue = string | CSSProperties | ((row: TableRecordType) => string);
-
-interface HyperResponsiveTableProps {
-  headers: TableRecordType;
-  rows: TableRecordType[];
+interface HyperResponsiveTableProps<TRecord> {
+  headers: TRecord;
+  rows: TRecord[];
   breakpoint: string | number;
-  keyGetter: (row: TableRecordType) => string;
-  tableStyling?: TableStylingValue;
+  keyGetter: (row: TRecord) => string;
+  tableStyling?: TableStylingValue<TRecord>;
   initialNarrow?: boolean;
   withClasses?: boolean;
 }
 
-const HyperResponsiveTable: FunctionComponent<HyperResponsiveTableProps> = ({
+const HyperResponsiveTable = <TRecord,>({
   headers,
   rows,
   breakpoint,
@@ -66,7 +57,7 @@ const HyperResponsiveTable: FunctionComponent<HyperResponsiveTableProps> = ({
   tableStyling,
   initialNarrow,
   withClasses,
-}) => {
+}: HyperResponsiveTableProps<TRecord>) => {
   const [mql, setMql] = useState<MediaQueryList>();
   const [oldBreakpoint, setOldBreakpoint] = useState<string | number>();
   if (oldBreakpoint !== breakpoint && matchMedia) {

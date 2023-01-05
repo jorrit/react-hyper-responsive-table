@@ -1,15 +1,22 @@
 import { render } from 'react-dom';
+import { ReactNode } from 'react';
 
 import './demo.css';
 import ReactHyperResponsiveTable from '../../src';
 
-const headers = {
+interface DataType {
+  image: ReactNode;
+  name: string;
+  role: ReactNode;
+}
+
+const headers: DataType = {
   image: '',
   name: 'Name',
   role: 'Role',
 };
 
-const rows = [
+const rows: DataType[] = [
   {
     name: 'Marlon Brando',
     role: <a href="https://en.wikipedia.org/wiki/Vito_Corleone">Vito Corleone</a>,
