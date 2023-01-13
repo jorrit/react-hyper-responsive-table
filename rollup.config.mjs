@@ -13,13 +13,13 @@ export default {
     {
       file: packageJson.main,
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
       exports: 'default',
     },
     {
       file: packageJson.module,
       format: 'esm',
-      sourcemap: true,
+      sourcemap: false,
       exports: 'default',
     },
   ],
@@ -32,6 +32,8 @@ export default {
       devDeps: true,
     }),
     nodeResolve({ extensions }),
-    typescript({}),
+    typescript({
+      exclude: ['./src/index.test.tsx'],
+    }),
   ],
 };
