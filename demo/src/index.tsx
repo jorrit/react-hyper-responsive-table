@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import './demo.css';
 import ReactHyperResponsiveTable from '../../src';
@@ -50,19 +50,33 @@ const rows: DataType[] = [
 ];
 const keyGetter = row => row.name;
 
-const Demo = () => (
-  <div>
-    <h1>react-hyper-responsive-table demo</h1>
-    <p>The breakpoint of this demo is set to 578 pixels.</p>
-    <ReactHyperResponsiveTable
-      headers={headers}
-      rows={rows}
-      keyGetter={keyGetter}
-      breakpoint={578}
-      withClasses
-      tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
-    />
-  </div>
-);
+const Demo = () => {
+  const [breakpoint, setBreakpoint] = useState(578);
+
+  return (
+    <div>
+      <h1>react-hyper-responsive-table demo</h1>
+      <p>
+        <label htmlFor="breakpoint">Breakpoint</label>:{' '}
+        <input
+          type="number"
+          id="breakpoint"
+          value={breakpoint}
+          min={1}
+          max={4096}
+          onChange={e => e.currentTarget.valueAsNumber && setBreakpoint(e.currentTarget.valueAsNumber)}
+        />
+      </p>
+      <ReactHyperResponsiveTable
+        headers={headers}
+        rows={rows}
+        keyGetter={keyGetter}
+        breakpoint={breakpoint}
+        withClasses
+        tableStyling={({ narrow }) => (narrow ? 'narrowtable' : 'widetable')}
+      />
+    </div>
+  );
+};
 
 render(<Demo />, document.querySelector('body'));

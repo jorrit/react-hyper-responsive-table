@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, TableHTMLAttributes, useState, useSyncExternalStore } from 'react';
+import { CSSProperties, TableHTMLAttributes, useState, useSyncExternalStore } from 'react';
 import * as PropTypes from 'prop-types';
 
 const stringOrElement = PropTypes.oneOfType([PropTypes.string, PropTypes.element]);
@@ -49,6 +49,13 @@ interface HyperResponsiveTableProps<TRecord> {
   withClasses?: boolean;
 }
 
+interface HyperResponsiveTableState {
+  mql?: MediaQueryList;
+  subscriber: (onStoreChange: () => void) => () => void;
+}
+
+const initialState: HyperResponsiveTableState = { subscriber: () => () => ({}) };
+
 const HyperResponsiveTable = <TRecord,>({
   headers,
   rows,
@@ -58,23 +65,29 @@ const HyperResponsiveTable = <TRecord,>({
   initialNarrow,
   withClasses,
 }: HyperResponsiveTableProps<TRecord>) => {
-  const [mql, setMql] = useState<MediaQueryList>();
+  const [state, setState] = useState<HyperResponsiveTableState>(initialState);
   const [oldBreakpoint, setOldBreakpoint] = useState<string | number>();
+
   if (oldBreakpoint !== breakpoint && matchMedia) {
-    setMql(window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `(min-width: ${breakpoint}px)`));
+    const mql = window.matchMedia(typeof breakpoint === 'string' ? breakpoint : `(min-width: ${breakpoint}px)`);
+    setState({
+      mql,
+      subscriber: onStoreChange => {
+        if (matchMedia) {
+          console.log('subscribing');
+          mql.addListener(onStoreChange);
+          return () => mql.removeListener(onStoreChange);
+        }
+
+        return () => ({});
+      },
+    });
     setOldBreakpoint(breakpoint);
   }
 
   const narrow = useSyncExternalStore(
-    onStoreChange => {
-      if (matchMedia) {
-        mql.addListener(onStoreChange);
-        return () => mql.removeListener(onStoreChange);
-      }
-
-      return () => ({});
-    },
-    () => (mql ? !mql.matches : false), // on client
+    state.subscriber,
+    () => (state.mql ? !state.mql.matches : false), // on client
     () => initialNarrow // on server
   );
 
