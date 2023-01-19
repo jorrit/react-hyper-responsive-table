@@ -4,18 +4,15 @@ import * as PropTypes from 'prop-types';
 const stringOrElement = PropTypes.oneOfType([PropTypes.string, PropTypes.element]);
 const objectOfStringOrElement = PropTypes.objectOf(stringOrElement);
 
-const getClassNameOrStyleProps = <TRecord,>(
-  classNameOrStyle: undefined | TableStylingValue<TRecord>,
+const getClassNameOrStyleProps = (
+  classNameOrStyle: undefined | TableStylingValue,
   narrow: boolean
 ): TableHTMLAttributes<HTMLTableElement> => {
   if (!classNameOrStyle) {
     return {};
   }
   if (typeof classNameOrStyle === 'function') {
-    // eslint-disable-next-line no-param-reassign
-    classNameOrStyle = classNameOrStyle.call(null, {
-      narrow: narrow,
-    });
+    classNameOrStyle = classNameOrStyle({ narrow });
   }
   if (typeof classNameOrStyle === 'string') {
     return { className: classNameOrStyle };
@@ -37,14 +34,14 @@ function rowClass(withClasses, key) {
 const inBrowser = typeof window !== 'undefined';
 const matchMedia = inBrowser && window.matchMedia !== null;
 
-type TableStylingValue<TRecord> = string | CSSProperties | ((row: TRecord) => string);
+type TableStylingValue = string | CSSProperties | ((settings: { narrow: boolean }) => string);
 
 interface HyperResponsiveTableProps<TRecord> {
   headers: TRecord;
   rows: TRecord[];
   breakpoint: string | number;
   keyGetter: (row: TRecord) => string;
-  tableStyling?: TableStylingValue<TRecord>;
+  tableStyling?: TableStylingValue;
   initialNarrow?: boolean;
   withClasses?: boolean;
 }
