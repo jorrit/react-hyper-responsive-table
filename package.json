@@ -60,7 +60,8 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "module": "index.mjs",
+  "exports": "./index.mjs",
+  "types": "./index.d.ts",
   "peerDependencies": {
     "prop-types": "*",
     "react": "^16.0.1 || ^17.0.0 || ^18.0.0"
