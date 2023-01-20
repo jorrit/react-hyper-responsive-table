@@ -56,7 +56,7 @@ const Demo = () => {
     <div>
       <h1>react-hyper-responsive-table {process.env.VERSION} demo</h1>
       <p>
-        <a href={process.env.HOMEPAGE}>Visit on GitHub</a>
+        <a href={process.env.REPOSITORY}>Visit on GitHub</a>
       </p>
       <p>
         <label htmlFor="breakpoint">Breakpoint</label>:{' '}

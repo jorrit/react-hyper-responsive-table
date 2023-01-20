@@ -46,7 +46,9 @@ export default {
     replace({
       preventAssignment: true,
       'process.env.VERSION': JSON.stringify(pkg.version),
-      'process.env.HOMEPAGE': JSON.stringify(pkg.homepage),
+      'process.env.REPOSITORY': JSON.stringify(
+        pkg.homepage.repository.replace('git://', 'https://').replace('.git', '')
+      ),
     }),
   ],
 };
