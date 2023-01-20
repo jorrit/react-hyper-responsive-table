@@ -1,6 +1,5 @@
 import { render } from 'react-dom';
 import { ReactNode, useState } from 'react';
-
 import './demo.css';
 import ReactHyperResponsiveTable from '../../src';
 
@@ -55,7 +54,10 @@ const Demo = () => {
 
   return (
     <div>
-      <h1>react-hyper-responsive-table demo</h1>
+      <h1>react-hyper-responsive-table {process.env.VERSION} demo</h1>
+      <p>
+        <a href={process.env.HOMEPAGE}>Visit on GitHub</a>
+      </p>
       <p>
         <label htmlFor="breakpoint">Breakpoint</label>:{' '}
         <input
