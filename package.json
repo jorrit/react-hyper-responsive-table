@@ -85,8 +85,5 @@
     "printWidth": 120,
     "endOfLine": "auto",
     "arrowParens": "avoid"
-  },
-  "dependencies": {
-    "tslib": "^2.4.0"
   }
 }
