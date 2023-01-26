@@ -1,5 +1,5 @@
 import { CSSProperties, TableHTMLAttributes, useState, useSyncExternalStore } from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const stringOrElement = PropTypes.oneOfType([PropTypes.string, PropTypes.element]);
 const objectOfStringOrElement = PropTypes.objectOf(stringOrElement);
