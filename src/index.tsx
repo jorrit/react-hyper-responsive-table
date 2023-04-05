@@ -71,7 +71,6 @@ const HyperResponsiveTable = <TRecord,>({
       mql,
       subscriber: onStoreChange => {
         if (matchMedia) {
-          console.log('subscribing');
           mql.addListener(onStoreChange);
           return () => mql.removeListener(onStoreChange);
         }
