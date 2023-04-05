@@ -1,7 +1,7 @@
 {
   "name": "react-hyper-responsive-table",
   "description": "react-hyper-responsive-table React component",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-rc.0",
   "author": "Jorrit Schippers <jorrit@ncode.nl>",
   "bugs": {
     "url": "https://github.com/jorrit/react-hyper-responsive-table/issues"
