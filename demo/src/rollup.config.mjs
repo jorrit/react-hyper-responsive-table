@@ -7,7 +7,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import html from '@rollup/plugin-html';
 import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
-import pkg from '../../package.json' assert { type: 'json' };
+import pkg from '../../package.json' with { type: 'json' };
 
 const inputDir = dirname(fileURLToPath(import.meta.url));
 const outputDir = join(inputDir, '..', 'dist');

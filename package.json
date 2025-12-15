@@ -26,8 +26,8 @@
     "@typescript-eslint/parser": "^5.40.1",
     "babel-jest": "^29.2.1",
     "eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "expect": "^29.2.1",
@@ -36,14 +36,14 @@
     "jest-environment-jsdom": "^29.2.1",
     "match-media-mock": "^0.1.1",
     "nyc": "^15.1.0",
-    "prettier": "^2.3.2",
+    "prettier": "^3.7.4",
     "prop-types": "^15.7.2",
     "react": "^18.0.1",
     "react-dom": "^18.0.1",
     "rollup": "^3.2.3",
     "rollup-plugin-import-css": "^3.1.0",
     "rollup-plugin-node-externals": "^5.0.1",
-    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-typescript2": "^0.36.0",
     "ts-node": "^10.1.0",
     "typescript": "^5.0.3"
   },
@@ -60,9 +60,11 @@
     "table"
   ],
   "license": "MIT",
-  "main": "index.js",
-  "exports": "./index.mjs",
-  "types": "./index.d.ts",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js",
+    "types": "./index.d.ts"
+  },
   "peerDependencies": {
     "prop-types": "*",
     "react": "^16.0.1 || ^17.0.0 || ^18.0.0"

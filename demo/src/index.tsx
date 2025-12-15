@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { ReactNode, useState } from 'react';
 import './demo.css';
 import ReactHyperResponsiveTable from '../../src';
@@ -81,4 +81,6 @@ const Demo = () => {
   );
 };
 
-render(<Demo />, document.querySelector('body'));
+const container = document.querySelector('body');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<Demo />);

@@ -2,7 +2,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import externals from 'rollup-plugin-node-externals';
 
-import packageJson from './package.json' assert { type: 'json' };
+import packageJson from './package.json' with { type: 'json' };
 
 const extensions = ['.tsx', '.ts'];
 
@@ -11,13 +11,13 @@ export default {
   external: [''],
   output: [
     {
-      file: packageJson.main,
+      file: packageJson.exports.require,
       format: 'cjs',
       sourcemap: false,
       exports: 'default',
     },
     {
-      file: packageJson.exports,
+      file: packageJson.exports.import,
       format: 'esm',
       sourcemap: false,
       exports: 'default',
