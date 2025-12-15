@@ -58,9 +58,9 @@ const HyperResponsiveTable = <TRecord,>({
   rows,
   breakpoint,
   keyGetter,
-  tableStyling,
-  initialNarrow,
-  withClasses,
+  tableStyling = null,
+  initialNarrow = false,
+  withClasses = false,
 }: HyperResponsiveTableProps<TRecord>) => {
   const [state, setState] = useState<HyperResponsiveTableState>(initialState);
   const [oldBreakpoint, setOldBreakpoint] = useState<string | number>();
@@ -140,12 +140,6 @@ HyperResponsiveTable.propTypes = {
   tableStyling: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   initialNarrow: PropTypes.bool,
   withClasses: PropTypes.bool,
-};
-
-HyperResponsiveTable.defaultProps = {
-  initialNarrow: false,
-  withClasses: false,
-  tableStyling: null,
 };
 
 export default HyperResponsiveTable;
