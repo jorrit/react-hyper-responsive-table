@@ -10,6 +10,11 @@ A responsive container for displaying tables traditionally on wide screens and w
 
 `npm install react-hyper-responsive-table`
 
+This module uses `useSyncExternalStore`, which was introduced in React 18. If you are still using React 17 or older, also install
+[use-sync-external-store](https://www.npmjs.com/package/use-sync-external-store):
+
+`npm install use-sync-external-store`
+
 ## Example
 
 ```jsx
