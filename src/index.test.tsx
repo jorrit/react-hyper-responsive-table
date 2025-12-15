@@ -1,6 +1,6 @@
 /* eslint-env browser, mocha */
 
-import expect from 'expect';
+import { expect } from '@jest/globals';
 import { createRoot, Root } from 'react-dom/client';
 import matchMediaMock from 'match-media-mock';
 
